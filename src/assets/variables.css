@@ -1,0 +1,20 @@
+:root {
+  --text-color: #22282e;
+  --editor-text-color: #000;
+  --nav-text-color: #3d4d5c;
+  --link-active-nav: #615e64;
+  --secondary-text-color: #93a4b5;
+  --font-size: 14px;
+  --font-title: 'Inter', sans-serif;
+  --font-text: 'Inter', sans-serif;
+  --primary-color: #7960a8;
+  --primary-light: #f2ecfd;
+  --primary-extralight: color-mix(in srgb, var(--primary-light) 20%, transparent);
+  --site-background: #f8fafc;
+  --block-background: #fff;
+  --border-color-site: #a1b0c0;
+  --border-color-block: #696566;
+  --border-color: color-mix(in srgb, var(--text-color) 20%, transparent);
+  --shadow-block: 1px 4px 7px -1px rgb(0 0 0 / 0.1), 1px 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-button: 1px 1px 0 0 rgb(0 0 0 / 0.19);
+}
