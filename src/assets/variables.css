@@ -9,6 +9,7 @@
   --font-text: 'Inter', sans-serif;
   --primary-color: #7960a8;
   --primary-light: #f2ecfd;
+  --primary-mediumlight: color-mix(in srgb, var(--primary-light) 40%, transparent);
   --primary-extralight: color-mix(in srgb, var(--primary-light) 20%, transparent);
   --site-background: #f8fafc;
   --block-background: #fff;
@@ -17,4 +18,6 @@
   --border-color: color-mix(in srgb, var(--text-color) 20%, transparent);
   --shadow-block: 1px 4px 7px -1px rgb(0 0 0 / 0.1), 1px 2px 4px -2px rgb(0 0 0 / 0.1);
   --shadow-button: 1px 1px 0 0 rgb(0 0 0 / 0.19);
+  --placeholder-color: #d0bfe6;
+  --icon-background-color: #eceff2;
 }

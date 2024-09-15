@@ -5,6 +5,10 @@ import LoginView from '@/views/LoginView.vue'
 import { useAuthStore } from '@/stores/auth.store'
 import AccountView from '@/views/AccountView.vue'
 import OptionsView from '@/views/OptionsView.vue'
+import HelpView from '@/views/HelpView.vue'
+import FeedbackView from '@/views/FeedbackView.vue'
+import { useProjectStore } from '@/stores/project.store'
+import ProjectView from '@/views/ProjectView.vue'
 
 const router = createRouter({
   history: createWebHistory(),
@@ -20,6 +24,11 @@ const router = createRouter({
       component: DocumentView
     },
     {
+      path: '/project/:id',
+      name: 'projectview',
+      component: ProjectView
+    },
+    {
       path: '/login',
       name: 'loginview',
       component: LoginView
@@ -33,6 +42,16 @@ const router = createRouter({
       path: '/options',
       name: 'optionsview',
       component: OptionsView
+    },
+    {
+      path: '/help',
+      name: 'helpview',
+      component: HelpView
+    },
+    {
+      path: '/feedback',
+      name: 'feedbackview',
+      component: FeedbackView
     }
   ]
 })
@@ -40,9 +59,16 @@ const router = createRouter({
 router.beforeEach(async (to, from, next) => {
   console.log(to, from)
   const authStore = useAuthStore()
+  const projectStore = useProjectStore()
   if (!authStore.userData && to.name !== 'loginview') {
     if (authStore.accessToken) {
-      await authStore.loadUserData()
+      try {
+        await authStore.loadUserData()
+        await projectStore.loadProjects()
+      } catch (error) {
+        authStore.logOut()
+        next('/login')
+      }
       next()
     } else {
       next('/login')

@@ -13,7 +13,10 @@
       <label for="password">Mots de passe</label>
       <input v-model="password" type="password" id="password" name="password" />
     </div>
-
+    <p class="error" v-if="loginError && typeof loginError === 'string'">{{ loginError }}</p>
+    <div v-if="loginError && typeof loginError === 'object'">
+      <p class="error" v-for="error in loginError">{{ error }}</p>
+    </div>
     <button type="submit">Continuer</button>
   </form>
 </template>
@@ -28,9 +31,14 @@ const authStore = useAuthStore()
 
 const email = ref('')
 const password = ref('')
+const loginError = ref(null)
 
-function submit() {
-  authStore.login(email.value, password.value)
+async function submit() {
+  try {
+    await authStore.login(email.value, password.value)
+  } catch (error: any) {
+    loginError.value = error.response.data.message
+  }
 }
 </script>
 
@@ -80,5 +88,11 @@ button {
 
 p {
   font-size: 0.8rem;
+}
+
+.error {
+  color: red;
+  font-weight: 600;
+  padding-bottom: 1.2rem;
 }
 </style>
