@@ -43,7 +43,8 @@
         </div>
         <div class="menu-secondaire">
           <RouterLink :to="'/project/' + project.id" v-for="project in projectStore.userProjects">
-            <PhBook size="16" color="var(--text-color)" weight="regular" />{{ project.title }}
+            <PhBook size="16" color="var(--text-color)" weight="regular" />
+            <h4>{{ project.title }}</h4>
           </RouterLink>
         </div>
       </nav>

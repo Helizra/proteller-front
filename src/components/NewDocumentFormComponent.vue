@@ -109,34 +109,11 @@ async function submit() {
 </script>
 
 <style scoped>
-.title-project {
-  display: flex;
-  flex-direction: column;
-  border: 0.5px solid var(--border-color);
-  border-radius: 0.4rem;
-  padding: 0.5rem 1rem;
-  margin-bottom: 1.2em;
-  width: 50%;
-}
-
-label,
 p {
   font-size: 0.7rem;
   font-family: var(--font-text);
   color: var(--secondary-text-color);
   font-weight: 700;
-}
-
-input {
-  border: none;
-  font-weight: 900;
-  padding: 0;
-  font-size: 1.2rem;
-}
-
-input:focus {
-  outline: none;
-  font-weight: 800;
 }
 
 .author-project,
@@ -146,7 +123,7 @@ input:focus {
   gap: 1.6rem;
   border: 0.5px solid var(--border-color);
   border-radius: 0.4rem;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 0rem 0.5rem 0.5rem;
   margin-bottom: 1.2em;
   width: 50%;
 }
@@ -155,22 +132,6 @@ input:focus {
 .state-draft {
   display: flex;
   flex-direction: column;
-}
-
-select {
-  font-size: 1.2rem;
-  font-weight: 900;
-  border: none;
-}
-
-.icon {
-  background-color: var(--icon-background-color);
-  border-radius: 50%;
-  height: 2rem;
-  width: 2rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .button-classic {

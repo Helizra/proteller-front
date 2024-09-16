@@ -17,15 +17,17 @@
             </div>
             <div class="status-draft">
               <label for="status-select">Statut</label>
-              <select name="status" id="status-select" v-model="status">
-                <option value="Draft 0">Draft 0</option>
-                <option value="Draft 1">Draft 1</option>
-                <option value="Draft 2">Draft 2</option>
-                <option value="Draft 3">Draft 3</option>
-                <option value="Draft 4">Draft 4</option>
-                <option value="Draft 5">Draft 5</option>
-                <option value="Draft 6">Draft 6</option>
-              </select>
+              <div class="selector">
+                <select name="status" id="status-select" v-model="status">
+                  <option value="Draft 0">Draft 0</option>
+                  <option value="Draft 1">Draft 1</option>
+                  <option value="Draft 2">Draft 2</option>
+                  <option value="Draft 3">Draft 3</option>
+                  <option value="Draft 4">Draft 4</option>
+                  <option value="Draft 5">Draft 5</option>
+                  <option value="Draft 6">Draft 6</option>
+                </select>
+              </div>
             </div>
           </div>
         </div>
@@ -51,7 +53,7 @@
 import { useProjectStore } from '@/stores/project.store'
 import ModalComponent from './ModalComponent.vue'
 import TitleComponent from './TitleComponent.vue'
-import { PhBook, PhSpinnerGap } from '@phosphor-icons/vue'
+import { PhBook, PhSpinnerGap, PhCaretDown } from '@phosphor-icons/vue'
 import { ref } from 'vue'
 
 const projectStore = useProjectStore()
@@ -104,49 +106,19 @@ button {
   gap: 1.6rem;
   border: 0.5px solid var(--border-color);
   border-radius: 0.4rem;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 0rem 0.5rem 0.5rem;
   margin-bottom: 1.2em;
   width: 50%;
 }
 
-.status-draft {
-  display: flex;
-  flex-direction: column;
-}
-
-label {
-  font-size: 0.7rem;
-  font-family: var(--font-text);
-  color: var(--secondary-text-color);
-  font-weight: 700;
-}
-
-select {
-  font-size: 1.2rem;
-  font-weight: 900;
-  border: none;
-}
-
-.title-project {
-  display: flex;
-  flex-direction: column;
-  border: 0.5px solid var(--border-color);
-  border-radius: 0.4rem;
-  padding: 0.5rem 1rem;
-  margin-bottom: 1.2em;
-  width: 50%;
-}
-
-textarea,
-input {
+textarea {
   border: none;
   font-weight: 900;
   padding: 0;
   font-size: 1.2rem;
 }
 
-textarea:focus,
-input:focus {
+textarea:focus {
   outline: none;
   font-weight: 800;
 }
@@ -183,16 +155,6 @@ textarea.description-box {
 .wrapper1 {
   display: flex;
   flex-direction: column;
-}
-
-.icon {
-  background-color: var(--icon-background-color);
-  border-radius: 50%;
-  height: 2rem;
-  width: 2rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 form {

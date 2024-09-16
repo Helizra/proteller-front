@@ -52,35 +52,6 @@ form {
   padding: 0 6rem;
 }
 
-input {
-  border: none;
-  font-weight: 800;
-  padding: 0;
-  padding-top: 0.1rem;
-}
-
-input:focus {
-  outline: none;
-  font-weight: 800;
-}
-
-.form-input {
-  border: 0.5px solid var(--border-color);
-  border-radius: 0.4rem;
-  display: flex;
-  flex-direction: column;
-  padding: 0.5rem 1rem;
-  margin-bottom: 1.2em;
-  width: 100%;
-}
-
-label {
-  font-size: 0.7rem;
-  font-family: var(--font-text);
-  color: var(--secondary-text-color);
-  font-weight: 700;
-}
-
 button {
   margin-bottom: 1.5rem;
   align-self: flex-end;

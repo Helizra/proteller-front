@@ -88,3 +88,83 @@ button {
   align-items: center;
   gap: 0.5rem;
 }
+
+input {
+  border: none;
+  font-weight: 800;
+  padding: 0;
+  padding-top: 0.1rem;
+}
+
+input:focus {
+  outline: none;
+  font-weight: 800;
+}
+
+.form-input {
+  border: 0.5px solid var(--border-color);
+  border-radius: 0.4rem;
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem 1rem;
+  margin-bottom: 1.2em;
+  width: 100%;
+}
+
+label {
+  font-size: 0.7rem;
+  font-family: var(--font-text);
+  color: var(--secondary-text-color);
+  font-weight: 700;
+}
+
+.icon {
+  background-color: var(--icon-background-color);
+  border-radius: 50%;
+  height: 2rem;
+  width: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+option {
+  font-family: var(--font-title);
+}
+
+.title-project {
+  display: flex;
+  flex-direction: column;
+  border: 0.5px solid var(--border-color);
+  border-radius: 0.4rem;
+  padding: 0.5rem 1rem;
+  margin-bottom: 1.2em;
+  width: 50%;
+}
+
+input.title {
+  font-size: 1.2rem;
+}
+
+select {
+  font-size: 1.2rem;
+  font-weight: 800;
+  border: none;
+  background-color: transparent;
+  appearance: none;
+  outline: none;
+  width: 100%;
+  background: url('/Users/emeline/Developpement/proteller/proteller-front/src/img/caret-down-fill.svg')
+    no-repeat right 1rem center / 0.7rem;
+}
+
+select::-ms-expand {
+  display: none;
+}
+
+.status-draft,
+.state-draft {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+}
