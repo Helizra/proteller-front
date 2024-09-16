@@ -11,7 +11,7 @@
   --primary-light: #f2ecfd;
   --primary-mediumlight: color-mix(in srgb, var(--primary-light) 40%, transparent);
   --primary-extralight: color-mix(in srgb, var(--primary-light) 20%, transparent);
-  --site-background: #f8fafc;
+  --site-background: #f7f6f9;
   --block-background: #fff;
   --border-color-site: #a1b0c0;
   --border-color-block: #696566;

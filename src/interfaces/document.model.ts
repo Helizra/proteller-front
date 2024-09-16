@@ -4,5 +4,6 @@ export interface Document {
   createdAt: string
   updatedAt: string
   state: string
+  status: string
   content: string
 }

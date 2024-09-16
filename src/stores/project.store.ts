@@ -3,10 +3,12 @@ import axios from 'axios'
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
 import { useAuthStore } from './auth.store'
+import { useRouter } from 'vue-router'
 
 export const useProjectStore = defineStore('projects', () => {
   const userProjects = ref<Project[]>([])
   const authStore = useAuthStore()
+  const router = useRouter()
 
   async function createProject(title: string, description: string, status: string) {
     const newProject = await axios.post<Project>(
@@ -22,7 +24,7 @@ export const useProjectStore = defineStore('projects', () => {
     )
     console.log(newProject)
     userProjects.value.unshift(newProject.data)
-    // todo : ajouter un renvoi vers le dashboard du projet
+    router.push('/project/' + newProject.data.id)
   }
 
   async function loadProjects() {

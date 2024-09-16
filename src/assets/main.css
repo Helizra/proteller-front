@@ -101,17 +101,27 @@ input:focus {
   font-weight: 800;
 }
 
-.form-input {
+.form-input,
+.form {
   border: 0.5px solid var(--border-color);
   border-radius: 0.4rem;
   display: flex;
-  flex-direction: column;
   padding: 0.5rem 1rem;
-  margin-bottom: 1.2em;
   width: 100%;
 }
 
-label {
+.form-input {
+  margin-bottom: 1.2em;
+  flex-direction: column;
+}
+
+.form {
+  gap: 1.6rem;
+  align-items: center;
+}
+
+label,
+.label {
   font-size: 0.7rem;
   font-family: var(--font-text);
   color: var(--secondary-text-color);

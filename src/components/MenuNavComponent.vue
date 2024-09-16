@@ -1,81 +1,87 @@
 <template>
   <section>
-    <div class="menu">
-      <div class="user">
-        <h2>{{ authStore.userData?.name }}</h2>
+    <div class="sticky">
+      <div class="menu">
+        <div class="user">
+          <h2>{{ authStore.userData?.name }}</h2>
 
-        <div class="dark-mode">
-          <PhSun v-if="!darkMode" :size="18" color="var(--text-color)" weight="regular" />
-          <PhMoon v-else :size="18" color="var(--text-color)" weight="regular" />
-          <label class="switch">
-            <input type="checkbox" v-model="darkMode" />
-            <span class="slider round"></span>
-          </label>
-        </div>
-      </div>
-
-      <nav>
-        <RouterLink to="/">
-          <PhHouse :size="20" color="var(--secondary-text-color)" weight="regular" />
-          Dashbooard
-        </RouterLink>
-        <RouterLink to="/account">
-          <PhUser :size="20" color="var(--secondary-text-color)" weight="regular" />
-          Mon compte
-        </RouterLink>
-        <button class="autre">
-          <PhFileMagnifyingGlass :size="20" color="var(--secondary-text-color)" weight="regular" />
-          Ouverture rapide
-        </button>
-        <RouterLink to="/options">
-          <PhGear :size="20" color="var(--secondary-text-color)" weight="regular" />
-          Options
-        </RouterLink>
-      </nav>
-      <hr />
-      <nav>
-        <div class="project">
-          <div class="title-proj">
-            <PhBooks :size="16" color="var(--text-color)" weight="regular" />
-            <h3>Projets</h3>
+          <div class="dark-mode">
+            <PhSun v-if="!darkMode" :size="18" color="var(--text-color)" weight="regular" />
+            <PhMoon v-else :size="18" color="var(--text-color)" weight="regular" />
+            <label class="switch">
+              <input type="checkbox" v-model="darkMode" />
+              <span class="slider round"></span>
+            </label>
           </div>
-          <button class="add-project" @click="createProject">+</button>
         </div>
-        <div class="menu-secondaire">
-          <RouterLink :to="'/project/' + project.id" v-for="project in projectStore.userProjects">
-            <PhBook size="16" color="var(--text-color)" weight="regular" />
-            <h4>{{ project.title }}</h4>
-          </RouterLink>
-        </div>
-      </nav>
-      <hr />
-      <nav>
-        <div class="title-supp">
-          <PhButterfly :size="16" color="var(--text-color)" weight="regular" />
-          <h3>Support</h3>
-        </div>
-        <div class="menu-secondaire">
-          <RouterLink to="/feedback">
-            <PhHeart :size="16" color="var(--text-color)" weight="regular" />
-            <h4>Feeedback</h4>
-          </RouterLink>
 
-          <RouterLink to="/help">
-            <PhInfo :size="16" color="var(--text-color)" weight="regular" />
-            <h4>Help</h4>
+        <nav>
+          <RouterLink to="/">
+            <PhHouse :size="20" color="var(--secondary-text-color)" weight="regular" />
+            Dashbooard
           </RouterLink>
-        </div>
-      </nav>
-    </div>
-    <div class="footer">
-      <hr />
+          <RouterLink to="/account">
+            <PhUser :size="20" color="var(--secondary-text-color)" weight="regular" />
+            Mon compte
+          </RouterLink>
+          <button class="autre">
+            <PhFileMagnifyingGlass
+              :size="20"
+              color="var(--secondary-text-color)"
+              weight="regular"
+            />
+            Ouverture rapide
+          </button>
+          <RouterLink to="/options">
+            <PhGear :size="20" color="var(--secondary-text-color)" weight="regular" />
+            Options
+          </RouterLink>
+        </nav>
+        <hr />
+        <nav>
+          <div class="project">
+            <div class="title-proj">
+              <PhBooks :size="16" color="var(--text-color)" weight="regular" />
+              <h3>Projets</h3>
+            </div>
+            <button class="add-project" @click="createProject">+</button>
+          </div>
+          <div class="menu-secondaire">
+            <RouterLink :to="'/project/' + project.id" v-for="project in projectStore.userProjects">
+              <PhBook size="16" color="var(--text-color)" weight="regular" />
+              <h4>{{ project.title }}</h4>
+            </RouterLink>
+          </div>
+        </nav>
+        <hr />
+        <nav>
+          <div class="title-supp">
+            <PhButterfly :size="16" color="var(--text-color)" weight="regular" />
+            <h3>Support</h3>
+          </div>
+          <div class="menu-secondaire">
+            <RouterLink to="/feedback">
+              <PhHeart :size="16" color="var(--text-color)" weight="regular" />
+              <h4>Feeedback</h4>
+            </RouterLink>
 
-      <nav class="logout">
-        <button @click="logout" class="link">
-          <PhSignOut :size="16" color="var(--secondary-text-color)" weight="regular" />Se
-          déconnecter
-        </button>
-      </nav>
+            <RouterLink to="/help">
+              <PhInfo :size="16" color="var(--text-color)" weight="regular" />
+              <h4>Help</h4>
+            </RouterLink>
+          </div>
+        </nav>
+      </div>
+      <div class="footer">
+        <hr />
+
+        <nav class="logout">
+          <button @click="logout" class="link">
+            <PhSignOut :size="16" color="var(--secondary-text-color)" weight="regular" />Se
+            déconnecter
+          </button>
+        </nav>
+      </div>
     </div>
   </section>
   <Transition name="fade">
@@ -125,11 +131,12 @@ function hideFormProject() {
 </script>
 
 <style scoped>
-section {
+.sticky {
   display: flex;
   flex-direction: column;
-  height: 100%;
   justify-content: space-between;
+  position: sticky;
+  top: 0;
 }
 
 nav {
