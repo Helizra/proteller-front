@@ -7,13 +7,14 @@
   --font-size: 14px;
   --font-title: 'Inter', sans-serif;
   --font-text: 'Inter', sans-serif;
+  --font-text-document: 'Lora', serif;
   --primary-color: #7960a8;
   --primary-light: #f2ecfd;
   --primary-mediumlight: color-mix(in srgb, var(--primary-light) 40%, transparent);
   --primary-extralight: color-mix(in srgb, var(--primary-light) 20%, transparent);
-  --site-background: #f7f6f9;
+  --site-background: #fbfbfd;
   --block-background: #fff;
-  --border-color-site: #a1b0c0;
+  --border-color-site: #c6c4c0;
   --border-color-block: #696566;
   --border-color: color-mix(in srgb, var(--text-color) 20%, transparent);
   --shadow-block: 1px 4px 7px -1px rgb(0 0 0 / 0.1), 1px 2px 4px -2px rgb(0 0 0 / 0.1);

@@ -14,10 +14,12 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "@ckeditor/ckeditor5-vue": "^7.0.0",
     "@phosphor-icons/vue": "^2.2.1",
     "@vueuse/core": "^11.1.0",
     "@vueuse/integrations": "^11.0.3",
     "axios": "^1.7.7",
+    "ckeditor5": "^43.1.0",
     "pinia": "^2.1.7",
     "universal-cookie": "^7.2.0",
     "vue": "^3.4.29",

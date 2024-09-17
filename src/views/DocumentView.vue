@@ -1,5 +1,7 @@
 <template>
-  <h1>Document</h1>
+  <EditorComponent />
 </template>
 
-<script setup lang="ts"></script>
+<script lang="js" setup>
+import EditorComponent from '@/components/EditorComponent.vue'
+</script>

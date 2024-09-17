@@ -1,5 +1,13 @@
 <template>
-  <h1>Homeview</h1>
+  <div class="block">
+    <TitleComponent>
+      <h1>Home</h1>
+    </TitleComponent>
+  </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import TitleComponent from '../components/TitleComponent.vue'
+</script>
+
+<style scoped></style>

@@ -1,6 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import DocumentView from '@/views/DocumentView.vue'
-import DashboardView from '@/views/DashboardView.vue'
 import LoginView from '@/views/LoginView.vue'
 import { useAuthStore } from '@/stores/auth.store'
 import AccountView from '@/views/AccountView.vue'
@@ -9,17 +8,20 @@ import HelpView from '@/views/HelpView.vue'
 import FeedbackView from '@/views/FeedbackView.vue'
 import { useProjectStore } from '@/stores/project.store'
 import ProjectView from '@/views/ProjectView.vue'
+import HomeView from '@/views/HomeView.vue'
+import OptionsDocView from '@/views/OptionsDocView.vue'
+import StyleView from '@/views/StyleView.vue'
 
 const router = createRouter({
   history: createWebHistory(),
   routes: [
     {
       path: '/',
-      name: 'dashboard',
-      component: DashboardView
+      name: 'home',
+      component: HomeView
     },
     {
-      path: '/document/:id',
+      path: '/project/:projectid/document/:documentid',
       name: 'documentview',
       component: DocumentView
     },
@@ -42,6 +44,16 @@ const router = createRouter({
       path: '/options',
       name: 'optionsview',
       component: OptionsView
+    },
+    {
+      path: '/:projectid/options',
+      name: 'optionsdocview',
+      component: OptionsDocView
+    },
+    {
+      path: '/:projectid/style',
+      name: 'styleview',
+      component: StyleView
     },
     {
       path: '/help',

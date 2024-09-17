@@ -5,7 +5,7 @@
     </TitleComponent>
 
     <div class="top-info">
-      <div class="description">
+      <div class="description" id="editableDiv" contenteditable="true">
         {{ currentProject?.description }}
       </div>
 
@@ -101,7 +101,6 @@
       <table>
         <thead>
           <tr>
-            <th scope="col">Checkbox</th>
             <th scope="col">Titre</th>
             <th scope="col">Nombre de mots</th>
             <th scope="col">État</th>
@@ -115,8 +114,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="document in currentProject?.documents">
-            <td><input class="checkbox" type="checkbox" /></td>
+          <tr v-for="document in currentProject?.documents" @click="goToDocument(document.id)">
             <td class="doc-wrapp">
               <PhFileText :size="16" color="var(--text-color)" weight="regular" />
               {{ document.title }}
@@ -156,7 +154,7 @@ import TitleComponent from '@/components/TitleComponent.vue'
 import { useProjectStore } from '@/stores/project.store'
 import { useDateFormat, useNow } from '@vueuse/core'
 import { computed, ref } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import {
   PhCalculator,
   PhCalendar,
@@ -172,6 +170,7 @@ import { useAuthStore } from '../stores/auth.store'
 
 const authStore = useAuthStore()
 const route = useRoute()
+const router = useRouter()
 const projectStore = useProjectStore()
 const afficheModalDocument = ref(false)
 const afficheCaptionTable = ref(true)
@@ -188,6 +187,10 @@ function createDocument() {
 
 function hideFormDocument() {
   afficheModalDocument.value = false
+}
+
+function goToDocument(documentId: string) {
+  router.push('/project/' + currentProject.value?.id + '/document/' + documentId)
 }
 </script>
 
@@ -298,6 +301,7 @@ td {
 tbody tr:hover {
   background-color: var(--primary-mediumlight);
   --text-color: var(--primary-color);
+  cursor: pointer;
 }
 
 .doc-wrapp {
@@ -316,5 +320,7 @@ caption p {
   color: var(--primary-color);
   opacity: 0.4;
   font-style: italic;
+  font-family: var(--font-text);
+  font-size: 0.8rem;
 }
 </style>
