@@ -3,7 +3,7 @@
   --editor-text-color: #000;
   --nav-text-color: #3d4d5c;
   --link-active-nav: #615e64;
-  --secondary-text-color: #93a4b5;
+  --secondary-text-color: #9d87c5;
   --font-size: 14px;
   --font-title: 'Inter', sans-serif;
   --font-text: 'Inter', sans-serif;
@@ -12,7 +12,7 @@
   --primary-light: #f2ecfd;
   --primary-mediumlight: color-mix(in srgb, var(--primary-light) 40%, transparent);
   --primary-extralight: color-mix(in srgb, var(--primary-light) 20%, transparent);
-  --site-background: #fbfbfd;
+  --site-background: #fafaff;
   --block-background: #fff;
   --border-color-site: #c6c4c0;
   --border-color-block: #696566;

@@ -43,6 +43,7 @@ function changeComponent() {
 p {
   font-size: 0.8rem;
   text-align: center;
+  font-family: var(--font-title);
 }
 
 .change-component {

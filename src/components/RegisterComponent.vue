@@ -57,6 +57,7 @@ button {
 
 p {
   font-size: 0.8rem;
+  font-family: var(--font-title);
 }
 
 .change-component {

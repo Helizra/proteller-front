@@ -3,37 +3,39 @@
     <div class="menu">
       <div class="project">
         <h2>{{ currentProject?.title }}</h2>
-        <PhCaretDoubleLeft :size="20" color="var(--secondary-text-color)" weight="regular" />
+        <button class="hide-menu" @click="emit('switchFullScreenMode', true)">
+          <PhCaretDoubleLeft :size="16" color="var(--text-color)" weight="regular" />
+        </button>
       </div>
 
       <nav>
         <RouterLink to="/">
-          <PhHouse :size="20" color="var(--secondary-text-color)" weight="regular" />
+          <PhHouse :size="16" color="var(--secondary-text-color)" weight="regular" />
           Home
         </RouterLink>
 
-        <RouterLink to="/project">
-          <PhBook :size="20" color="var(--secondary-text-color)" weight="regular" />
+        <RouterLink :to="'/' + currentProject.id + '/dashboard'">
+          <PhBook :size="16" color="var(--secondary-text-color)" weight="regular" />
           Dashboard
         </RouterLink>
 
         <RouterLink :to="'/' + currentProject.id + '/style'">
-          <PhTextAa :size="20" color="var(--secondary-text-color)" weight="regular" />
+          <PhTextAa :size="16" color="var(--secondary-text-color)" weight="regular" />
           Styles
         </RouterLink>
 
         <RouterLink :to="'/' + currentProject.id + '/options'">
-          <PhGear :size="20" color="var(--secondary-text-color)" weight="regular" />
+          <PhGear :size="16" color="var(--secondary-text-color)" weight="regular" />
           Options
         </RouterLink>
 
         <button class="autre">
-          <PhDownloadSimple :size="20" color="var(--secondary-text-color)" weight="regular" />
+          <PhDownloadSimple :size="16" color="var(--secondary-text-color)" weight="regular" />
           Exporter
         </button>
 
         <button class="autre">
-          <PhTrash :size="20" color="var(--secondary-text-color)" weight="regular" />
+          <PhTrash :size="16" color="var(--secondary-text-color)" weight="regular" />
           Corbeille
         </button>
       </nav>
@@ -48,9 +50,15 @@
           <RouterLink
             :to="'/project/' + currentProject.id + '/document/' + document.id"
             v-for="document in currentProject?.documents"
+            class="menu-doc"
           >
-            <PhFiles size="16" color="var(--text-color)" weight="regular" />
-            <h4>{{ document.title }}</h4>
+            <div class="menu-title-doc">
+              <PhFiles size="16" color="var(--text-color)" weight="regular" />
+              <h4>{{ document.title }}</h4>
+            </div>
+            <div class="doc-parametre">
+              <DocSubMenuComponent :document="document" />
+            </div>
           </RouterLink>
         </div>
 
@@ -102,20 +110,25 @@ import {
   PhFile,
   PhFolderOpen,
   PhCaretDoubleLeft,
-  PhBook
+  PhBook,
+  PhList
 } from '@phosphor-icons/vue'
-import { useProjectStore } from '@/stores/project.store'
-import { computed, ref } from 'vue'
-import { useRoute } from 'vue-router'
+import { ref } from 'vue'
 import NewDocumentFormComponent from './NewDocumentFormComponent.vue'
 import type { Project } from '@/interfaces/project.model'
+import DocSubMenuComponent from './DocSubMenuComponent.vue'
+
+const emit = defineEmits(['switchFullScreenMode'])
 
 const authStore = useAuthStore()
-const route = useRoute()
-const projectStore = useProjectStore()
 const router = useRouter()
 
 const props = defineProps<{ currentProject: Project }>()
+
+/**
+ * construire une computed sortedDocuments qui renvoie les documents de props.currentProject.documents triés dans l'ordre que tu veux.
+ * Utiliser cette computed pour afficher la liste des documents à la place de la prop.
+ */
 
 const afficheModalDocument = ref(false)
 
@@ -153,16 +166,18 @@ a,
   color: var(--secondary-text-color);
   text-decoration: none;
   font-size: 0.85rem;
-  font-weight: 600;
+  font-weight: 500;
   display: flex;
   justify-items: center;
   align-items: center;
   gap: 0.6rem;
-  padding: 0.2rem 0.5rem;
+  padding: 0.3rem 0.5rem;
 }
 
 .autre,
-.link {
+.link,
+.hide-menu,
+.btn-doc-parametre {
   padding: 0.2rem 0.5rem;
   border: none;
   box-shadow: none;
@@ -181,10 +196,7 @@ h4 {
 }
 
 hr {
-  border: 0;
   border-bottom: 0.5px solid var(--border-color);
-  margin-left: 1.2rem;
-  margin-right: 1.2rem;
 }
 
 p {
@@ -194,6 +206,10 @@ p {
   display: flex;
   align-items: center;
   gap: 0.6rem;
+}
+
+button.btn-doc-parametre {
+  color: var(--primary-color);
 }
 
 .title-doc {
@@ -256,13 +272,28 @@ a.router-link-active {
 }
 
 .btn-dossier {
-  background-color: var(--primary-light);
+  background-color: var(--primary-color);
+  color: white;
+  border: 0.5px solid var(--primary-color);
+  --text-color: white;
 }
 
 .project {
   display: flex;
   justify-content: space-between;
   padding: 2rem 1.3rem 0 1.3rem;
+  align-items: center;
+}
+
+.menu-doc {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.menu-title-doc {
+  display: flex;
+  gap: 0.6rem;
   align-items: center;
 }
 </style>

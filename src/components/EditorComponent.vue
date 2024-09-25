@@ -1,7 +1,10 @@
 <template>
-  <div class="block">
+  <div>
     <div class="main-container">
-      <div class="editor-container editor-container_balloon-editor" ref="editorContainerElement">
+      <div
+        class="editor-container editor-container_balloon-editor editor-container_include-style editor-container_include-block-toolbar"
+        ref="editorContainerElement"
+      >
         <div class="editor-container__editor">
           <div ref="editorElement">
             <ckeditor
@@ -21,16 +24,27 @@
 import {
   BalloonEditor,
   AccessibilityHelp,
+  Alignment,
   Autoformat,
   AutoImage,
   Autosave,
   BalloonToolbar,
   BlockQuote,
+  BlockToolbar,
   Bold,
   CloudServices,
+  Code,
+  CodeBlock,
   Essentials,
+  FindAndReplace,
+  FontBackgroundColor,
+  FontColor,
+  FontFamily,
+  FontSize,
   GeneralHtmlSupport,
   Heading,
+  Highlight,
+  HorizontalLine,
   HtmlComment,
   HtmlEmbed,
   ImageBlock,
@@ -53,10 +67,21 @@ import {
   MediaEmbed,
   PageBreak,
   Paragraph,
-  PasteFromMarkdownExperimental,
   PasteFromOffice,
+  RemoveFormat,
   SelectAll,
   ShowBlocks,
+  SpecialCharacters,
+  SpecialCharactersArrows,
+  SpecialCharactersCurrency,
+  SpecialCharactersEssentials,
+  SpecialCharactersLatin,
+  SpecialCharactersMathematical,
+  SpecialCharactersText,
+  Strikethrough,
+  Style,
+  Subscript,
+  Superscript,
   Table,
   TableCaption,
   TableCellProperties,
@@ -65,13 +90,10 @@ import {
   TableToolbar,
   TextPartLanguage,
   TextTransformation,
-  Title,
   TodoList,
   Underline,
   Undo
 } from 'ckeditor5'
-
-import translations from 'ckeditor5/translations/fr.js'
 
 import 'ckeditor5/ckeditor5.css'
 
@@ -88,45 +110,56 @@ export default {
     this.config = {
       toolbar: {
         items: [
+          'heading',
+          '|',
           'undo',
           'redo',
           '|',
-          'showBlocks',
-          'textPartLanguage',
-          '|',
-          'heading',
+          'alignment',
           '|',
           'bold',
           'italic',
           'underline',
-          '|',
-          'pageBreak',
+          'strikethrough',
+          'highlight',
           'link',
+          '|',
+          'fontColor',
+          'fontfamily',
           'mediaEmbed',
           'insertTable',
           'blockQuote',
-          'htmlEmbed',
           '|',
           'bulletedList',
           'numberedList',
-          'todoList',
           'outdent',
           'indent'
         ],
-        shouldNotGroupWhenFull: false
+        shouldNotGroupWhenFull: true
       },
       plugins: [
         AccessibilityHelp,
+        Alignment,
         Autoformat,
         AutoImage,
         Autosave,
         BalloonToolbar,
         BlockQuote,
+        BlockToolbar,
         Bold,
         CloudServices,
+        Code,
+        CodeBlock,
         Essentials,
+        FindAndReplace,
+        FontBackgroundColor,
+        FontColor,
+        FontFamily,
+        FontSize,
         GeneralHtmlSupport,
         Heading,
+        Highlight,
+        HorizontalLine,
         HtmlComment,
         HtmlEmbed,
         ImageBlock,
@@ -149,10 +182,21 @@ export default {
         MediaEmbed,
         PageBreak,
         Paragraph,
-        PasteFromMarkdownExperimental,
         PasteFromOffice,
+        RemoveFormat,
         SelectAll,
         ShowBlocks,
+        SpecialCharacters,
+        SpecialCharactersArrows,
+        SpecialCharactersCurrency,
+        SpecialCharactersEssentials,
+        SpecialCharactersLatin,
+        SpecialCharactersMathematical,
+        SpecialCharactersText,
+        Strikethrough,
+        Style,
+        Subscript,
+        Superscript,
         Table,
         TableCaption,
         TableCellProperties,
@@ -161,12 +205,42 @@ export default {
         TableToolbar,
         TextPartLanguage,
         TextTransformation,
-        Title,
         TodoList,
         Underline,
         Undo
       ],
       balloonToolbar: ['bold', 'italic', '|', 'link', '|', 'bulletedList', 'numberedList'],
+      blockToolbar: [
+        'fontSize',
+        'fontColor',
+        'fontBackgroundColor',
+        '|',
+        'bold',
+        'italic',
+        '|',
+        'link',
+        'insertTable',
+        '|',
+        'bulletedList',
+        'numberedList',
+        'outdent',
+        'indent'
+      ],
+      fontFamily: {
+        options: [
+          'Lora, serif',
+          'EB Garamond, serif',
+          'Georgia, serif',
+          'Times New Roman, Times, serif',
+          'Inter, sans-serif',
+          'Arial, Helvetica, sans-serif'
+        ],
+        supportAllValues: true
+      },
+      fontSize: {
+        options: [10, 12, 14, 16, 18, 20, 22],
+        supportAllValues: true
+      },
       heading: {
         options: [
           {
@@ -234,8 +308,7 @@ export default {
           'resizeImage'
         ]
       },
-      initialData: '<h2>',
-      language: 'fr',
+      initialData: '',
       link: {
         addTargetToExternalLinks: true,
         defaultProtocol: 'https://',
@@ -256,7 +329,56 @@ export default {
           reversed: true
         }
       },
-      placeholder: 'Type or paste your content here!',
+      placeholder: 'Start to write',
+      style: {
+        definitions: [
+          {
+            name: 'Article category',
+            element: 'h3',
+            classes: ['category']
+          },
+          {
+            name: 'Title',
+            element: 'h2',
+            classes: ['document-title']
+          },
+          {
+            name: 'Subtitle',
+            element: 'h3',
+            classes: ['document-subtitle']
+          },
+          {
+            name: 'Info box',
+            element: 'p',
+            classes: ['info-box']
+          },
+          {
+            name: 'Side quote',
+            element: 'blockquote',
+            classes: ['side-quote']
+          },
+          {
+            name: 'Marker',
+            element: 'span',
+            classes: ['marker']
+          },
+          {
+            name: 'Spoiler',
+            element: 'span',
+            classes: ['spoiler']
+          },
+          {
+            name: 'Code (dark)',
+            element: 'pre',
+            classes: ['fancy-code', 'fancy-code-dark']
+          },
+          {
+            name: 'Code (bright)',
+            element: 'pre',
+            classes: ['fancy-code', 'fancy-code-bright']
+          }
+        ]
+      },
       table: {
         contentToolbar: [
           'tableColumn',
@@ -265,13 +387,10 @@ export default {
           'tableProperties',
           'tableCellProperties'
         ]
-      },
-      translations: [translations]
+      }
     }
 
     this.isLayoutReady = true
   }
 }
 </script>
-
-<style scoped></style>

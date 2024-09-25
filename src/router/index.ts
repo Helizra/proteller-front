@@ -11,6 +11,7 @@ import ProjectView from '@/views/ProjectView.vue'
 import HomeView from '@/views/HomeView.vue'
 import OptionsDocView from '@/views/OptionsDocView.vue'
 import StyleView from '@/views/StyleView.vue'
+import DashboardView from '@/views/DashboardView.vue'
 
 const router = createRouter({
   history: createWebHistory(),
@@ -26,7 +27,7 @@ const router = createRouter({
       component: DocumentView
     },
     {
-      path: '/project/:id',
+      path: '/project/:projectid',
       name: 'projectview',
       component: ProjectView
     },
@@ -54,6 +55,11 @@ const router = createRouter({
       path: '/:projectid/style',
       name: 'styleview',
       component: StyleView
+    },
+    {
+      path: '/:projectid/dashboard',
+      name: 'dashboardview',
+      component: DashboardView
     },
     {
       path: '/help',

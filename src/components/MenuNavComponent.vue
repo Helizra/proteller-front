@@ -16,19 +16,19 @@
 
       <nav>
         <RouterLink to="/">
-          <PhHouse :size="20" color="var(--secondary-text-color)" weight="regular" />
+          <PhHouse :size="16" color="var(--secondary-text-color)" weight="regular" />
           Home
         </RouterLink>
         <RouterLink to="/account">
-          <PhUser :size="20" color="var(--secondary-text-color)" weight="regular" />
+          <PhUser :size="16" color="var(--secondary-text-color)" weight="regular" />
           Mon compte
         </RouterLink>
         <button class="autre">
-          <PhFileMagnifyingGlass :size="20" color="var(--secondary-text-color)" weight="regular" />
+          <PhFileMagnifyingGlass :size="16" color="var(--secondary-text-color)" weight="regular" />
           Ouverture rapide
         </button>
         <RouterLink to="/options">
-          <PhGear :size="20" color="var(--secondary-text-color)" weight="regular" />
+          <PhGear :size="16" color="var(--secondary-text-color)" weight="regular" />
           Options
         </RouterLink>
       </nav>
@@ -42,7 +42,7 @@
           <button class="add-project" @click="createProject">+</button>
         </div>
         <div class="menu-secondaire">
-          <RouterLink :to="'/project/' + project.id" v-for="project in projectStore.userProjects">
+          <RouterLink :to="'/project/' + project.id" v-for="project in projectStore.sortedProjects">
             <PhBook size="16" color="var(--text-color)" weight="regular" />
             <h4>{{ project.title }}</h4>
           </RouterLink>
@@ -145,12 +145,12 @@ a,
   color: var(--secondary-text-color);
   text-decoration: none;
   font-size: 0.85rem;
-  font-weight: 600;
+  font-weight: 500;
   display: flex;
   justify-items: center;
   align-items: center;
   gap: 0.6rem;
-  padding: 0.2rem 0.5rem;
+  padding: 0.3rem 0.5rem;
 }
 
 .autre,
